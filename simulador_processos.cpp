@@ -3,6 +3,7 @@
 #include <conio2.h>
 #include <windows.h>
 #include <unistd.h>
+#include <time.h>
 
 #include "bibliotecas\\interface.h"
 #include "bibliotecas\\processo.h"
@@ -94,20 +95,6 @@ void escalonar_processo(FilaC *prontos[TFP], Processo &exec) {
 		exec.tempoRestante = 0;
 	} else
 		exec.estado = executando;
-}
-
-char filas_vazias(FilaC *prontos[TFP], Fila *bloqueados[TFB]) {
-	int i = 0;
-	char vazio = 1;
-	while (i < TFP && fila_c_vazia(prontos[i]))
-		i++;
-	if (i < TFP) {
-		int i = 0;
-		while (i < TFB && fila_vazia(bloqueados[i]))
-			i++;
-		return i == TFP;
-	}
-	return 0;
 }
 
 Fila *gerenciar_processo_bloqueado(FilaC *prontos[TFP], Fila *f) {
@@ -229,11 +216,8 @@ Fila *decrementar_filho_bloqueados(Fila *f, Processo &exc, char &decrementado) {
 }
 
 Fila *finalizar_processo(FilaC *prontos[TFP], Fila *bloqueados[TFB], Fila *terminados, Processo &p) {
-	FilaC *auxC;
-	Fila *aux;
 	int i;
 	char decrementado, matar_processo = 1;
-	Processo pai;
 	
 	while (matar_processo) {
 		matar_processo = decrementado = 0;
@@ -270,7 +254,7 @@ void executar_processo(FilaC *prontos[TFP], Fila *bloqueados[TFB], Processo &exe
 				case 1: case 2: case 3:
 					bloquear_processo(bloqueados, exec, aleat - 1);
 					break;
-				case 4: case 5:
+				case 4: case 5: case 6:
 					fork(prontos, bloqueados, exec);
 					break;
 			}
@@ -315,7 +299,7 @@ char processo_maior_prioridade(FilaC *prontos[TFP], Processo exec) {
 }
 
 Fila *simular(FilaC *prontos[TFP], Fila *bloqueados[TFB], Fila *terminados, int &tempo, int& bloqueados_fork, int &bloqueados_evento) {
-	int i = 0, q = 1;
+	int q = 1;
 	char sair = 0;
 	Processo exec;
 
@@ -330,7 +314,7 @@ Fila *simular(FilaC *prontos[TFP], Fila *bloqueados[TFB], Fila *terminados, int 
 		while (!_kbhit()) {
 			atualizar_tabelas(prontos, bloqueados, exec, q, tempo);
 			
-			sleep(1);
+			Sleep(1000);
 
 			gerenciar_processos_bloqueados(prontos, bloqueados);
 			executar_processo(prontos, bloqueados, exec, q);
@@ -367,7 +351,7 @@ void relatorios(FilaC *prontos[TFP], Fila *bloqueados[TFB], Fila *terminados, in
 	quadro_completo(4, 6, 125, 28, 0, cinza_claro);
 	inserir_titulo(4, 125, (char*)"Relatorios", 6);
 	gotoxy(10, 8);
-	printf("Quantidade de processos criados: %d", processos_terminados);
+	printf("Quantidade de processos finalizados: %d", processos_terminados);
 	gotoxy(70, 8);
 	printf("Tempo total da simulacao: %d un.", tempo);
 	gotoxy(10, 10);
@@ -400,7 +384,7 @@ void executar(void) {
 	inserir_titulo(4, 125, (char*)"Mensagem", 31);
 	inserir_processos(prontos);
 
-	//srand(time, NULL);
+	srand(time(NULL));
 
 	terminados = simular(prontos, bloqueados, terminados, tempo, bloqueados_fork, bloqueados_evento);
 	relatorios(prontos, bloqueados, terminados, tempo, bloqueados_fork, bloqueados_evento);

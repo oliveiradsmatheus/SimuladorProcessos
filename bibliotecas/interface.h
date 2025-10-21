@@ -174,13 +174,10 @@ void mensagem_final(void) {
 	dimensionar_prompt((char*)"80", (char*)"30");
 	moldura(1, 1, 80, 30, 0, 11);
 	fundo_quadro(1, 1, 80, 30, 11);
-	exibir_texto(80, 4, 0, cinza_claro, (char*)"TRABALHO BIMESTRAL - SISTEMAS OPERACIONAIS I", (char*)"");
+	exibir_texto(80, 4, 0, amarelo, (char*)"TRABALHO BIMESTRAL - SISTEMAS OPERACIONAIS I", (char*)"");
 	exibir_texto(80, 9, 0, amarelo, (char*)"CICLO DE VIDA DE UM PROCESSO", (char*)"");
-	exibir_texto(80, 14, 0, cinza_claro, (char*)"102421080 - MATHEUS OLIVEIRA DA SILVA", (char*)"");
-	exibir_texto(80, 14, 0, cinza_claro, (char*)"102421080 - MATHEUS OLIVEIRA DA SILVA", (char*)"");
-	exibir_texto(80, 14, 0, cinza_claro, (char*)"102421080 - MATHEUS OLIVEIRA DA SILVA", (char*)"");
-	exibir_texto(80, 14, 0, cinza_claro, (char*)"102421080 - MATHEUS OLIVEIRA DA SILVA", (char*)"");
-	exibir_texto(80, 26, 0, cinza_claro, (char*)"PROF. ME. ROBSON SISCOUTTO", (char*)"");
+	exibir_texto(80, 16, 0, cinza_claro, (char*)"102421080 - MATHEUS OLIVEIRA DA SILVA", (char*)"");
+	exibir_texto(80, 26, 0, amarelo, (char*)"PROF. ME. ROBSON SISCOUTTO", (char*)"");
 }
 
 void limpar_msg() {

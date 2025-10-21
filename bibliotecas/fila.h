@@ -74,21 +74,30 @@ Fila *retirar_fila (Fila *f, Processo &p) {
 void exibir_fila (Fila *f, int linha) {
 	int c = 61;
 	gotoxy(c, 21 + linha*2);
-	if (linha == 3) {
-		printf("[Filho]:                                                        ");
-		c += 4;
-	} else
-		printf("[%d]:                                                            ", linha + 1);
-	c += 5;
+	switch(linha) {
+		case 0:
+			printf("[Mouse]:                                                        ", linha + 1);
+			c += 9;
+			break;
+		case 1:
+			printf("[Teclado]:                                                      ", linha + 1);
+			c += 11;
+			break;
+		case 2:
+			printf("[HD]:                                                           ", linha + 1);
+			c += 6;
+			break;
+		case 3:
+			printf("[Filho]:                                                        ", linha + 1);
+			c += 9;
+			break;
+	}
 	while (f) {
 		gotoxy(c, 21 + linha*2);
 		printf("P%d ", f->PCB.pid, f->PCB.qtdeFilhos, f->PCB.tBloqueadoFilho);
 		c += 5;
 		f = f->prox;
 	}
-	c-=2;
-	gotoxy(c, 21 + linha*2);
-	printf(" ");
 }
 
 void exibir_filas (Fila *f[TFB]) {

@@ -76,9 +76,6 @@ void exibir_fila_c (FilaC *f, int linha) {
 		c += 5;
 		f = f->prox;
 	}
-	c-=2;
-	gotoxy(c, 8 + linha*2);
-	printf(" ");
 }
 
 void exibir_filas_c (FilaC *f[TFB]) {
