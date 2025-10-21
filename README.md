@@ -83,7 +83,8 @@ função simular():
         fim-para
         atualizar estados de bloqueados
     fim-enquanto
-
+```
+```text
 função executar_processo(processo):
     mostrar informações na interface
     tempo -= 1
@@ -91,3 +92,27 @@ função executar_processo(processo):
         processo entra em bloqueio (mouse, teclado, HD ou filho)
     se processo for filho e pai ainda ativo:
         pai entra em bloqueio até término do filho
+```
+
+## 🖼️ Interface do Simulador
+
+O programa utiliza **Conio2** para apresentar os estados e transições de processos em uma interface visual no console:
+
+![Menu Principal do Simulador](imagens/menu.png)
+
+---
+
+## 📊 Visualização do Ciclo de Vida
+
+Apresentação do simulador:
+
+![Ciclo de Vida dos Processos](imagens/simulador.png)
+
+---
+
+## 🪄 Relatórios e Estatísticas
+
+Apresentação dos relatórios:
+
+![Relatórios e Estatísticas](imagens/relatorios.png)
+
