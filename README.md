@@ -30,7 +30,7 @@ O objetivo é **demonstrar o funcionamento interno do sistema operacional** no g
 - 🔹 **Escalonamento por prioridade** com filas circulares (Round-Robin dentro de prioridades)  
 - 🔹 **Bloqueio e desbloqueio** por diferentes causas: mouse, teclado, HD e espera por filhos  
 - 🔹 **Gerenciamento de processos zumbis e filhos**  
-- 🔹 **Preempção** quando há processo de maior prioridade  
+- 🔹 **Preempção** quando acaba sua fatia de tempo ou quando há processo de maior prioridade  
 - 🔹 **Relatórios automáticos** ao final da simulação com estatísticas detalhadas  
 - 🔹 **Interface amigável** em modo texto (cores, menus, quadros e mensagens) usando **Conio2**
 
@@ -75,7 +75,11 @@ função simular():
                 processo ← próximo da fila
                 executar_processo(processo)
                 se processo terminou:
-                    mover para fila de finalizados
+                    se processo não tem filhos vivos:
+                        mover para fila de finalizados
+                    senão:
+                        mover para fila de processos bloqueados pelo filho
+                    fim-se
                 senão se bloqueou:
                     mover para fila de bloqueados
                 fim-se
