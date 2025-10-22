@@ -106,7 +106,7 @@ O programa utiliza **Conio2** para apresentar os estados e transições de proce
 
 ---
 
-## 📊 Visualização do Ciclo de Vida
+## 🪄 Visualização do Ciclo de Vida
 
 Apresentação do simulador:
 
@@ -114,7 +114,7 @@ Apresentação do simulador:
 
 ---
 
-## 🪄 Relatórios e Estatísticas
+## 📊 Relatórios e Estatísticas
 
 Apresentação dos relatórios:
 
