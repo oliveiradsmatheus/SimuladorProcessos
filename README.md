@@ -67,7 +67,7 @@ Durante a execução:
 
 A seguir está o funcionamento básico da função principal da simulação:
 
-```text
+```c
 função simular():
     enquanto (existirem processos não finalizados):
         para cada nível de prioridade de 0 a 9:
@@ -79,16 +79,11 @@ função simular():
                         mover para fila de finalizados
                     senão:
                         mover para fila de processos bloqueados pelo filho
-                    fim-se
                 senão se bloqueou:
                     mover para fila de bloqueados
-                fim-se
-            fim-se
-        fim-para
         atualizar estados de bloqueados
-    fim-enquanto
 ```
-```text
+```c
 função executar_processo(processo):
     mostrar informações na interface
     tempo -= 1
